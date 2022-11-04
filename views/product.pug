@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p welcom to #{title}
+  - var results = product;
+  div(class="container-fluid")
+    each item,index in results 
+      div(class="row" ,onclick=`buy(${index})`)
+        div(class="col-sm-2") #{item.product1}
+        div(class="col-sm-2") #{item.product2}
+        div(class="col-sm-2") #{item.product3}
+  script. 
+        function buy(price){
+          alert('You purchased item ' + price)
+
+        }
