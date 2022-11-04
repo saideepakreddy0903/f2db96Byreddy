@@ -10,8 +10,7 @@ block content
     var count = 0;
     var bump = 1;
     function doBump(){
-      count = bump;
+     count = bump+count;
       bump ++;
       document.getElementById("bump").innerHTML = "count " + count + " with bump " + bump;
     }
-  

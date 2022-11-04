@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
   let S2=new product('Candy',90,'Food');
   let E1=new product('Shampoo',200,'Hair');
 
-  res.render('product', { title: 'Search Results product',product : [N1,S2,E1] });
+  res.render('product', { title: 'Search Results product', product: [N1,S2,E1] });
 });
 
 module.exports = router;
