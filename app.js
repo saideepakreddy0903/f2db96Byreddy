@@ -67,7 +67,7 @@ async function recreateDB() {
   await product.deleteMany();
   let instance1 = new
     product({
-      product1: "Magazines", product2: '150',
+      product1: "Magazines", product2: 150,
       product3: "Paper"
     });
   let instance2 = new
