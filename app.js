@@ -3,7 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var product = require("./models/product"); 
+var mongoose = require('mongoose');
+var product = require("./models/product");
+var mongodb= require('mongodb');
 
 require('dotenv').config(); 
 const connectionString =  
@@ -20,7 +22,6 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:')); 
 db.once("open", function(){ 
   console.log("Connection to DB succeeded")}); 
-
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -43,7 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/product', productRouter);
+app.use('/products', productRouter);
 app.use('/gridbuild', gridbuildRouter);
 app.use('/selector', selectorRouter);
 app.use('/resource', resourceRouter);
@@ -71,37 +72,28 @@ async function recreateDB(){
   // Delete everything 
   await product.deleteMany(); 
  
-  let instance1 = new 
-  product({product_name:"news paper",  product_use:'news', 
-  product_cost:5}); 
-
-  let instance2 = new 
-  product({product_name:"milk",  product_use:'drink', 
-  product_cost:25}); 
-
-  let instance3 = new 
-  product({product_name:"rice",  product_use:'food', 
-  product_cost:50}); 
-  
+  let instance1 = new product({product_name:"news paper",product_use:"news",product_cost:10}); 
   instance1.save( function(err,doc) { 
       if(err) return console.error(err); 
       console.log("First object saved") 
   }); 
 
+  let instance2 = new product({product_name:"milk",product_use:"drink",product_cost:25}); 
   instance2.save( function(err,doc) { 
-    if(err) return console.error(err); 
-    console.log("Second object saved") 
-}); 
+      if(err) return console.error(err); 
+      console.log("Second object saved") 
+  }); 
 
-instance3.save( function(err,doc) { 
-  if(err) return console.error(err); 
-  console.log("Third object saved") 
-}); 
+  let instance3 = new product({product_name:"rice",product_use:"food",product_cost:50}); 
+  instance3.save( function(err,doc) { 
+      if(err) return console.error(err); 
+      console.log("Third object saved") 
+  }); 
 
 } 
  
 let reseed = true; 
 if (reseed) { recreateDB();} 
- 
 
 module.exports = app;
+

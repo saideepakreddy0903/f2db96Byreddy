@@ -1,0 +1,50 @@
+extends layout 
+ 
+block content 
+  h1= title 
+
+    - let productid = toShow._id 
+    - let product_name = toShow.product_name
+    - let product_use = toShow.product_use
+    - let product_cost = toShow.product_cost
+    - let actionid = "/resource/products/" + productid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row
+       div(class='productAttr mr-3') product ID is:
+       div #{productid}
+      div.row
+       div(class='productAttr mr-5') product name is:
+       div #{product_name}
+      div.row
+       div(class='productAttr mr-5') product use is:
+       div #{product_use}
+      div.row
+       div(class='productAttr mr53') product cost is:
+       div #{product_cost}
+ 
+    button(class="btn btn-danger m-3" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-3" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the product collection 
+      window.location.href='/products' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'     
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/products' 
+        // TODO handle body 
+      }).catch((error) => { 
+        console.log(error);
+        alert("Delete failed " + error ) 
+      }); 
+    } 

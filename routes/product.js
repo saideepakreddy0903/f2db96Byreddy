@@ -1,25 +1,43 @@
+//var express = require('express');
+//constproduct_controlers= require('../controllers/product'); 
+//var router = express.Router();
+
+
+// classproduct {
+//   constructor(product_Name,product_flavour, price){
+//          this.product_Name=product_Name;
+//          this.age=product_age;
+//          this.price=product_price;
+//   }
+//}
+/* GET home page. */
+//router.get('/', function(req, res, next) {
+
+// res.render('product', { title: 'Search Resultsproduct',product : [D1,D2,D3] });});
+//module.exports = router;
 var express = require('express');
-const product_controlers= require('../controllers/product'); 
+
 var router = express.Router();
 
-/*class product {
-  constructor(product_name, product_use, product_cost)
-  {
-    this.product_name = product_name;
-    this.product_use = product_use;
-    this.product_Size = product_Size;
-  }
-}*/
+const product_controlers= require('../controllers/product');
 
-/* GET home page. */
-/*router.get('/', function(req, res, next) {
-  let W1 = new product("Glass", "white", 100);
-  let W2 = new product("Walk-in", "black", 150);
-  let W3 = new product("Wooden", "brown", 200);
+/* GETproducts */
+router.get('/', product_controlers.product_view_all_Page );
 
-  res.render('product', { title: 'Search Results product',product : [W1,W2,W3]});
-});*/
-router.get('/', product_controlers.product_view_all_Page ); 
-router.get('/:id', product_controlers.product_detail);
-router.put('/:id', product_controlers.product_update_put);
 module.exports = router;
+
+// GET request for oneproduct.
+router.get('/products/:id', product_controlers.product_detail);
+
+
+/* GET detailproduct page */
+router.get('/detail', product_controlers.product_view_one_Page);
+
+/* GET createproduct page */
+router.get('/create', product_controlers.product_create_Page);
+
+/* GET create update page */
+router.get('/update', product_controlers.product_update_Page);
+
+/* GET deleteproduct page */
+router.get('/delete', product_controlers.product_delete_Page);

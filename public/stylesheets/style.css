@@ -6,3 +6,25 @@ body {
 a {
   color: #00B7FF;
 }
+
+.productAttr {
+  background-color: aquamarine;
+  width: 240px;
+ }
+
+.productStyle {
+  background-color: crimson;
+  width: 120px; 
+
+  font-style: oblique;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  font-size: medium;
+  font: 100;
+  font: 1em sans-serif;
+  font-feature-settings: "abvf";
+  text-shadow: 2px 2px 5px red;
+
+}
+
+ 

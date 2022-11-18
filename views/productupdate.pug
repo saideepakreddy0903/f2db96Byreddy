@@ -1,0 +1,42 @@
+extends layout
+block content
+  h1= title
+  if (toShow == null) 
+    h2 No instance to update 
+  else
+  - let productid = toShow._id
+  - let product_name = toShow.product_name
+  - let product_use = toShow.product_use
+  - let product_cost = toShow.product_cost
+  - let actionid = "/resource/products/" + productid
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{productid} 
+  form(id='productForm', action=actionid, method="PUT")
+   div.form-group
+    label.productStyle(for='product_name') product name
+    input#product_name(type='text', name='product_name')
+   div.form-group
+    label.productStyle(for='product_use') product use
+    input#product_use(type='text', name='product_use')
+   div.form-group
+    label.productStyle(for='product_cost') product cost
+    input#product_cost(type='number', name='product_cost')
+   input(type="submit")
+  script.
+    document.forms['productForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+       method: 'PUT',
+       body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+       return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+       alert("Save succeded")
+       // TODO handle body
+      }).catch((error) => {
+       // TODO handle error
+       alert("Save failed " + error )
+      });
+     });
