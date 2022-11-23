@@ -1,20 +1,20 @@
 extends layout
 block content
- h1= title
- - let productid = toShow._id
- - let product_name = toShow.product_name
- - let product_use = toShow.product_use
- - let product_cost = toShow.product_cost
- div
-    div.row
-     div(class='productAttr mr-3') product ID is:
-     div #{productid}
-    div.row
-     div(class='productAttr mr-3') product name is:
-     div #{product_name}
-    div.row
-      div(class='productAttr mr-3') product use is:
-      div #{product_use}
-    div.row
-      div(class='productAttr mr-3') product cost is:
-      div #{product_cost}
+    h1= title
+    - let productid = toShow._id
+    - let product_name = toShow.product_name
+    - let product_use = toShow.product_use
+    - let product_cost = toShow.product_cost
+    div
+      div.row
+          div(class='productAttr mr-3') product ID is:
+          div #{productid}
+      div.row
+          div(class='productAttr mr-3') product name is:
+          div #{product_name}
+      div.row
+            div(class='productAttr mr-3') product use is:
+            div #{product_use}
+      div.row
+            div(class='productAttr mr-3') product cost is:
+            div #{product_cost}

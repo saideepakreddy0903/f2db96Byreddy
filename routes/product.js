@@ -27,7 +27,7 @@ router.get('/', product_controlers.product_view_all_Page );
 module.exports = router;
 
 // GET request for oneproduct.
-router.get('/products/:id', product_controlers.product_detail);
+router.get('/product/:id', product_controlers.product_detail);
 
 
 /* GET detailproduct page */

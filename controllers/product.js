@@ -1,11 +1,11 @@
 var product = require('../models/product');
 
-// List of all products 
+// List of all product
 
 exports.product_list = async function (req, res) {
     try {
-        theproducts = await product.find();
-        res.send(theproducts);
+        theproduct = await product.find();
+        res.send(theproduct);
     }
     catch (err) {
         res.status(500);
@@ -86,8 +86,8 @@ exports.product_update_put = function (req, res) {
 // Handle a show all view 
 exports.product_view_all_Page = async function (req, res) {
     try {
-        theproducts = await product.find();
-        res.render('products', { title: 'product Search Results', results: theproducts });
+        theproduct = await product.find();
+        res.render('product', { title: 'product Search Results', results: theproduct });
     }
     catch (err) {
         res.status(500);
