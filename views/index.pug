@@ -1,16 +1,12 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
-  P I like to listen soft music.
-  button(type="button", class="btn btn-secondary", onclick="doBump()") Press Me
-  div(id='bump') Bump the count 
-  script. 
-    var count = 0;
-    var bump = 1;
-    function doBump(){
-     count = bump+count;
-      bump ++;
-      document.getElementById("bump").innerHTML = "count " + count + " with bump " + bump;
-    }
+extends layout 
+ 
+block content 
+  if (!user) 
+    a(href="/login") Login 
+    br 
+    a(href="/register") Register 
+  if (user) 
+    p You are currently logged in as #{user.username} 
+    a(href="/product") Take me to product 
+    br 
+    a(href="/logout") Logout 
